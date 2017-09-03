@@ -9,7 +9,7 @@
     
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-xs-2 text-center">
-            <button type="button" class="btn3d btn btn-lg btn-success"><i class="fa fa-chevron-left" aria-hidden="true"></i>                
+            <button id="leftBtn" type="button" class="btn3d btn btn-lg btn-success"><i class="fa fa-chevron-left" aria-hidden="true"></i>                
                 </button>            
         </div>
 
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-xs-2 text-center">
-                <button type="button" class="btn3d btn btn-lg btn-primary"><i class="fa fa-chevron-right" aria-hidden="true"></i>                
+                <button id="rightBtn" type="button" class="btn3d btn btn-lg btn-primary"><i class="fa fa-chevron-right" aria-hidden="true"></i>                
                 </button>
         </div>
     </div>
@@ -27,9 +27,9 @@
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-xs-12 text-center">
             <div class="button-group">
-                <input type="checkbox" data-size="large" data-toggle="toggle" data-onstyle="danger" data-offstyle="success" data-on="Male" data-off="Female">
+                <input id="typeSelectionInput" type="checkbox" data-size="large" data-toggle="toggle" data-onstyle="danger" data-offstyle="success" data-on="Male" data-off="Female">
 
-                <button type="button" style="margin-left: 5px;" class="btn3d btn btn-lg btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                <button id="saveBtn" type="button" style="margin-left: 5px;" class="btn3d btn btn-lg btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
