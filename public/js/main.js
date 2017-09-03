@@ -1,1 +1,6 @@
-$("[name='my-checkbox']").bootstrapSwitch();
+$(function() {
+  $('#toggle-two').bootstrapToggle({
+    on: 'Male',
+    off: 'Female'
+  });
+});
