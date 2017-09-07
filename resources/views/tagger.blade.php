@@ -51,33 +51,6 @@
         </div>
     </div>
 
-    <!-- <div class="row" style="margin-bottom: 10px;"> -->
-        <!-- <div class="col-xs-12 text-center"> -->
-  
-            <!-- <div>
-                <input id="typeSelectionInput" type="checkbox" data-size="large" data-toggle="toggle" data-onstyle="danger" data-offstyle="success" data-on="Male" data-off="Female">
-            </div> -->
-
-            <!-- <div class="[ form-group ]">
-                    <input type="checkbox" name="fancy-checkbox-danger" id="fancy-checkbox-danger" autocomplete="off" />
-                    <div class="[ btn-group ]">
-                        <label for="fancy-checkbox-danger" class="[ btn btn-danger ]">
-                            <span class="[ glyphicon glyphicon-ok ]"></span>
-                            <span> </span>
-                        </label>
-                        <label for="fancy-checkbox-danger" class="[ btn btn-default active ]">
-                            Invalid Image
-                        </label>
-                    </div>
-            </div> -->
-
-            <!-- <div>
-                <button id="saveBtn" type="button" style="margin-left: 5px;" class="btn3d btn btn-lg btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-            </div> -->
-        <!-- </div> -->
-
-    <!-- </div> -->
-
 
     <div class="row">
         <div class="col-xs-12">

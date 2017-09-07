@@ -1,10 +1,14 @@
-$(function() {
+// Sets image given a link
+function loadImage(image_url){
+  $("#image_placeholder").attr('src', image_url);
+}
+
+
+$(document).ready(function(){
+
 
   var male = false;
   var female = true;
-
-
-
 
   // Rename the labels
   $('#typeSelectionInput').bootstrapToggle({
@@ -18,5 +22,14 @@ $(function() {
       female = !male;
   });
 
-  
+
+  // Get image at first 
+  $.getJSON("/image/untagged").done(function(data){
+    data = data[0];
+    loadImage(data.image_url);
+  }).fail(function(jqxhr, textStatus, error){
+    console.log("Request failed : " + error);
+  });
+
+
 });
