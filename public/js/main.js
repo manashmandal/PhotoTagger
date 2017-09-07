@@ -7,11 +7,21 @@ function loadImage(image_url){
   $("#image_placeholder").attr('src', image_url);
 }
 
+function loadingOn(){
+  $("#image_placeholder").attr('src', '');
+  $("#image_placeholder").addClass('spinner');
+}
+
+function loadingOff(image_url){
+  $("#image_placeholder").removeClass('spinner');
+  loadImage(image_url);
+}
+
 
 function decrease_id(){
   current_id = current_id - 1;
   current_id = current_id % (offset + image_count);
-  if (current_id < offset) current_id = image_count +  offset;
+  if (current_id < offset) current_id = image_count +  offset - 1;
   return current_id;
 }
 
@@ -62,6 +72,32 @@ $(document).ready(function(){
     console.log("IMAGE COUNT  : " + image_count);
   }).fail(function(jqxhr, textStatus, error){
     console.log("Request failed : " + error);
+  });
+
+  $("#leftBtn").on('click', function(){
+    console.log("CURRENT ID : " + current_id);
+    // Turn on loading
+    loadingOn();
+
+    decrease_id();
+    $.getJSON('/image/get', {id: current_id }).done(function(data){
+      data = data[0];
+      loadingOff(data.image_url);
+    }).fail(function(jqxhr, textStatus, error){
+      console.log("Request failed : " + error);
+    });
+  });
+
+  $("#rightBtn").on('click', function(){
+    loadingOn();
+    increase_id();
+
+    $.getJSON('/image/get', {id: current_id }).done(function(data){
+      data = data[0];
+      loadingOff(data.image_url);
+    }).fail(function(jqxhr, textStatus, error){
+      console.log("Request failed : " + error);
+    });
   });
 
 
