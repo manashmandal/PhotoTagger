@@ -1,6 +1,7 @@
 // Sets image given a link
 var current_id;
 var image_count;
+var offset;
 
 function loadImage(image_url){
   $("#image_placeholder").attr('src', image_url);
@@ -8,7 +9,15 @@ function loadImage(image_url){
 
 
 function increase_id(){
+  // Increase id
+  current_id = current_id + 1;
+  // // out of bound error fixer
+  current_id = current_id % (offset + image_count);
 
+  if (current_id <= offset) current_id = offset;
+  
+  // return current_id;
+  return current_id;
 }
 
 $(document).ready(function(){
@@ -34,6 +43,7 @@ $(document).ready(function(){
   $.getJSON("/image/untagged").done(function(data){
     data = data[0];
     current_id = data.id;
+    offset = current_id;
     loadImage(data.image_url);
   }).fail(function(jqxhr, textStatus, error){
     console.log("Request failed : " + error);
