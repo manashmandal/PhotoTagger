@@ -11,6 +11,31 @@
     <link rel="stylesheet" href="{{ asset('css/btn3d.css') }}">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
+
+    <style>
+      .form-group input[type="checkbox"] {
+          display: none;
+      }
+
+      .form-group input[type="checkbox"] + .btn-group > label span {
+          width: 20px;
+      }
+
+      .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+          display: none;
+      }
+      .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+          display: inline-block;   
+      }
+
+      .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+          display: inline-block;
+      }
+      .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+          display: none;   
+      }
+    </style>
+
 </head>
 <body>
 
