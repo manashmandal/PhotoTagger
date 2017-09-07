@@ -27,14 +27,16 @@ class LinksController extends Controller
 
         $image->save();
 
-        // dd($image->toArray());
+        return "Saved";
+
+        //dd($image->toArray());
 
         
-        // // $image_url = Links::get($image_id);
-        // // dd(Links::find((int) $image_id)->toArray());
-        // // dd($image_url);
-        // // return Input::get('id');
-        // // return $image;
+        // $image_url = Links::get($image_id);
+        // dd(Links::find((int) $image_id)->toArray());
+        // dd($image_url);
+        // return Input::get('id');
+        // return $image;
     }
 
 
@@ -48,5 +50,13 @@ class LinksController extends Controller
     public function get_image_count()
     {
         return Links::all()->count();
+    }
+
+    // Get image by id 
+    public function get_image_by_id()
+    {
+        $id = ((int) Input::get('id'));
+        $image = Links::where('id', $id)->get()->toArray();
+        return $image;
     }
 }
