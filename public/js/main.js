@@ -17,6 +17,26 @@ function loadingOff(image_url){
   loadImage(image_url);
 }
 
+function updateInfo(data){
+  $("#infoalert").empty();
+  
+  if (data.is_tagged){
+    $("#infoalert").attr('class', 'alert alert-success');
+    let gender = data.is_male === 1 ? "Male" : "Female";
+    gender = data.is_valid === 1 ? gender : "Invalid Image"; 
+    $("#infoalert").append(
+      '<h3><span class="label label label-success">Tagged</span> <span class="label label label-default">Image ID: ' + data.id + '</span> <span class="label label-primary">' + gender + '</span></h3>'
+    );
+
+  } else {
+    $("#infoalert").attr('class', 'alert alert-danger');
+    $("#infoalert")
+            .append('<h3><span class="label label label-danger">Not Tagged</span> <span class="label label label-default">Image ID: ' + data.id + '</span></h3>');
+
+  }
+}
+
+
 
 function decrease_id(){
   current_id = current_id - 1;
@@ -62,6 +82,7 @@ $(document).ready(function(){
     current_id = data.id;
     offset = current_id;
     loadImage(data.image_url);
+    updateInfo(data);
   }).fail(function(jqxhr, textStatus, error){
     console.log("Request failed : " + error);
   });
@@ -83,6 +104,7 @@ $(document).ready(function(){
     $.getJSON('/image/get', {id: current_id }).done(function(data){
       data = data[0];
       loadingOff(data.image_url);
+      updateInfo(data);
     }).fail(function(jqxhr, textStatus, error){
       console.log("Request failed : " + error);
     });
@@ -95,10 +117,13 @@ $(document).ready(function(){
     $.getJSON('/image/get', {id: current_id }).done(function(data){
       data = data[0];
       loadingOff(data.image_url);
+      updateInfo(data);
     }).fail(function(jqxhr, textStatus, error){
       console.log("Request failed : " + error);
     });
   });
 
 
+
+  // Set fixed width 
 });
