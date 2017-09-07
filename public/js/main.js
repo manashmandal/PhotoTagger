@@ -8,6 +8,13 @@ function loadImage(image_url){
 }
 
 
+function decrease_id(){
+  current_id = current_id - 1;
+  current_id = current_id % (offset + image_count);
+  if (current_id < offset) current_id = image_count +  offset;
+  return current_id;
+}
+
 function increase_id(){
   // Increase id
   current_id = current_id + 1;

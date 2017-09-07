@@ -23,7 +23,7 @@ Route::get('/', function(){
 Route::get('/image/untagged', 'LinksController@get_first_untagged');
 Route::get('/image/count', 'LinksController@get_image_count');
 Route::get('/image/get', 'LinksController@get_image_by_id');
-Route::get('/image/{tag}', 'LinksController@tag_image');
+Route::get('/image/{id}', 'LinksController@tag_image');
 
 
 
