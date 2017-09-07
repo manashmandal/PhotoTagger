@@ -43,4 +43,10 @@ class LinksController extends Controller
         $untagged = Links::where('is_tagged', 0)->take(1)->get();
         return $untagged;
     }
+
+    // Gets image count 
+    public function get_image_count()
+    {
+        return Links::all()->count();
+    }
 }

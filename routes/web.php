@@ -21,7 +21,9 @@ Route::get('/', function(){
 });
 
 Route::get('/image/untagged', 'LinksController@get_first_untagged');
+Route::get('/image/count', 'LinksController@get_image_count');
 Route::get('/image/{tag}', 'LinksController@tag_image');
+
 
 Route::get('/test', function(){
     return view('tagger');
