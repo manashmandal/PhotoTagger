@@ -14,7 +14,8 @@ class LinksController extends Controller
         $data = [
             'is_tagged' => ((bool) Input::get('tagged')),
             'is_male' => ((bool) Input::get('male')),
-            'is_female' => ((bool) Input::get('female'))
+            'is_female' => ((bool) Input::get('female')),
+            'is_valid' => ((bool) Input::get('valid'))
         ];
 
         $image = Links::find((int) $image_id);
@@ -22,6 +23,7 @@ class LinksController extends Controller
         $image->is_tagged = $data['is_tagged'];
         $image->is_male = $data['is_male'];
         $image->is_female = $data['is_female'];
+        $image->is_valid = $data['is_valid'];
 
         $image->save();
 
