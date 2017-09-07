@@ -3,6 +3,13 @@ var current_id;
 var image_count;
 var offset;
 
+// Set values 
+var set_gender;
+
+var is_male;
+var is_female;
+var is_valid;
+
 function loadImage(image_url){
   $("#image_placeholder").attr('src', image_url);
 }
@@ -37,6 +44,17 @@ function updateInfo(data){
 }
 
 
+// Listen to gender change input 
+$("#typeSelectionInput").change(function(){
+  set_gender = $(this).prop('checked');
+});
+
+// on save event
+$("#saveBtn").on('click', function(){
+  is_male = set_gender === true ? 1 : 0;
+  is_female = is_male === 1 ? 0 : 1;
+  
+});
 
 function decrease_id(){
   current_id = current_id - 1;
@@ -90,13 +108,12 @@ $(document).ready(function(){
   // Get image count 
   $.getJSON('/image/count').done(function(count){
     image_count = +count;
-    console.log("IMAGE COUNT  : " + image_count);
   }).fail(function(jqxhr, textStatus, error){
     console.log("Request failed : " + error);
   });
 
   $("#leftBtn").on('click', function(){
-    console.log("CURRENT ID : " + current_id);
+    
     // Turn on loading
     loadingOn();
 
