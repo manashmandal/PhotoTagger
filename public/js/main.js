@@ -35,6 +35,13 @@ function showProgressAlert(){
   );
 }
 
+// Generic update alert panel function 
+function updateAlertPanel(_html, _class){
+  $("#infoalert").empty();
+  $("#infoalert").attr('class', 'alert alert-' + _class);
+  $("#infoalert").append(_html);
+}
+
 // Updates info on alert
 function updateInfo(data){
 
@@ -63,6 +70,21 @@ $("#typeSelectionInput").change(function(){
 });
 
 
+// load untagged
+function loadUntagged(){
+  // Get image at first 
+  $.getJSON("/image/untagged").done(function(data){
+    data = data[0];
+    current_id = data.id;
+    offset = current_id;
+    loadImage(data.image_url);
+    updateInfo(data);
+  }).fail(function(jqxhr, textStatus, error){
+    console.log("Request failed : " + error);
+  });
+}
+
+
 // on save event
 $("#saveBtn").on('click', function(){
   is_male = set_gender === true ? 1 : 0;
@@ -77,8 +99,14 @@ $("#saveBtn").on('click', function(){
     valid: is_valid
   }).done(function(data){
     console.log("SAVED");
+    if (data.status === "saved"){
+        updateAlertPanel("<h3>Tagged Successfully</h3>", 'success');
+        setTimeout(loadUntagged(), 250);
+    }
   }).fail(function(jqxhr, textStatus, error){
     console.log("ERROR OCCURED : " + error);
+    updateAlertPanel("<h3>Tagged Failed</h3>", 'danger');
+    
   });
 });
 
@@ -123,16 +151,8 @@ $(document).ready(function(){
   });
 
 
-  // Get image at first 
-  $.getJSON("/image/untagged").done(function(data){
-    data = data[0];
-    current_id = data.id;
-    offset = current_id;
-    loadImage(data.image_url);
-    updateInfo(data);
-  }).fail(function(jqxhr, textStatus, error){
-    console.log("Request failed : " + error);
-  });
+  // Load untagged image at first
+  loadUntagged();
 
   // Get image count 
   $.getJSON('/image/count').done(function(count){
