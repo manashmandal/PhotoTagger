@@ -14,16 +14,28 @@ function loadImage(image_url){
   $("#image_placeholder").attr('src', image_url);
 }
 
+// Turns on loading progress
 function loadingOn(){
   $("#image_placeholder").attr('src', '');
   $("#image_placeholder").addClass('spinner');
 }
 
+// Turns off loading progress
 function loadingOff(image_url){
   $("#image_placeholder").removeClass('spinner');
   loadImage(image_url);
 }
 
+// Show progress bar 
+function showProgressAlert(){
+  $("#infoalert").empty();
+  $("#infoalert").attr('class', 'alert alert-warning');
+  $("#infoalert").append(
+      '<div class="progress"> <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">45% Complete</span> </div> </div>'
+  );
+}
+
+// Updates info on alert
 function updateInfo(data){
   $("#infoalert").empty();
   
@@ -53,9 +65,11 @@ $("#typeSelectionInput").change(function(){
 $("#saveBtn").on('click', function(){
   is_male = set_gender === true ? 1 : 0;
   is_female = is_male === 1 ? 0 : 1;
-  
+  // TODO: Add GET request to save data
 });
 
+
+// Decrease id
 function decrease_id(){
   current_id = current_id - 1;
   current_id = current_id % (offset + image_count);
@@ -63,6 +77,7 @@ function decrease_id(){
   return current_id;
 }
 
+// Increase id 
 function increase_id(){
   // Increase id
   current_id = current_id + 1;
@@ -116,8 +131,9 @@ $(document).ready(function(){
     
     // Turn on loading
     loadingOn();
-
+    showProgressAlert();
     decrease_id();
+    
     $.getJSON('/image/get', {id: current_id }).done(function(data){
       data = data[0];
       loadingOff(data.image_url);
@@ -130,6 +146,7 @@ $(document).ready(function(){
   $("#rightBtn").on('click', function(){
     loadingOn();
     increase_id();
+    showProgressAlert();
 
     $.getJSON('/image/get', {id: current_id }).done(function(data){
       data = data[0];
