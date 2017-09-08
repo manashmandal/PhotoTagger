@@ -61,11 +61,24 @@ $("#typeSelectionInput").change(function(){
   set_gender = $(this).prop('checked');
 });
 
+
 // on save event
 $("#saveBtn").on('click', function(){
   is_male = set_gender === true ? 1 : 0;
   is_female = is_male === 1 ? 0 : 1;
-  // TODO: Add GET request to save data
+  is_valid = $("#fancy-checkbox-danger").prop('checked') === true ? 0 : 1; 
+  
+  // Add GET request to save data
+  $.getJSON('/image/' + current_id, {
+    tagged: true, 
+    male: is_male,
+    female: is_female,
+    valid: is_valid
+  }).done(function(data){
+    console.log("SAVED");
+  }).fail(function(jqxhr, textStatus, error){
+    console.log("ERROR OCCURED : " + error);
+  });
 });
 
 
@@ -133,7 +146,7 @@ $(document).ready(function(){
     loadingOn();
     showProgressAlert();
     decrease_id();
-    
+
     $.getJSON('/image/get', {id: current_id }).done(function(data){
       data = data[0];
       loadingOff(data.image_url);

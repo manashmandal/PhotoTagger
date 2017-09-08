@@ -27,7 +27,9 @@ class LinksController extends Controller
 
         $image->save();
 
-        return "Saved";
+        $status = ['status' => 'saved'];
+
+        return $status;
 
         //dd($image->toArray());
 
