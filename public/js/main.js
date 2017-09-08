@@ -49,7 +49,7 @@ function updateInfo(data){
 
   console.log(data);
   
-  if (data.is_tagged){
+  if (data.is_tagged === '1'){
     $("#infoalert").attr('class', 'alert alert-success');
     let gender = data.is_male === '1' ? "Male" : "Female";
     gender = data.is_valid === '1' ? gender : "Invalid Image"; 
