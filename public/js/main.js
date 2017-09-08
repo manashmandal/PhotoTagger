@@ -190,8 +190,4 @@ $(document).ready(function(){
       console.log("Request failed : " + error);
     });
   });
-
-
-
-  // Set fixed width 
 });
