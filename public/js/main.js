@@ -114,9 +114,20 @@ $("#saveBtn").on('click', function(){
 // Decrease id
 function decrease_id(){
   current_id = current_id - 1;
-  current_id = current_id % (image_count);
-  if (current_id < image_count) current_id = image_count;
-  if (current_id == 0) current_id = 1;
+
+  if (current_id < 1){
+    current_id = image_count;
+    return current_id;
+  } else if (current_id > image_count) {
+    current_id = 1;
+    return current_id;
+  } else {
+    current_id = current_id % (image_count);
+  }
+
+  if (current_id === 0) current_id++;
+  
+  // return current_id;
   return current_id;
 }
 
