@@ -17,7 +17,7 @@
 
 
 Route::get('/', function(){
-    return view('welcome');
+    return view('tagger');
 });
 
 Route::get('/image/untagged', 'LinksController@get_first_untagged');
@@ -25,11 +25,6 @@ Route::get('/image/count', 'LinksController@get_image_count');
 Route::get('/image/get', 'LinksController@get_image_by_id');
 Route::get('/image/{id}', 'LinksController@tag_image');
 
-
-
-Route::get('/test', function(){
-    return view('tagger');
-});
 
 
 // Route::get('/', 'PagesController@about');

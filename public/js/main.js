@@ -1,5 +1,5 @@
 // Sets image given a link
-var current_id;
+var current_id = 1;
 var image_count;
 var offset;
 
@@ -114,8 +114,9 @@ $("#saveBtn").on('click', function(){
 // Decrease id
 function decrease_id(){
   current_id = current_id - 1;
-  current_id = current_id % (offset + image_count);
-  if (current_id < offset) current_id = image_count +  offset - 1;
+  current_id = current_id % (image_count);
+  if (current_id < image_count) current_id = image_count;
+  if (current_id == 0) current_id = 1;
   return current_id;
 }
 
@@ -124,9 +125,16 @@ function increase_id(){
   // Increase id
   current_id = current_id + 1;
   // // out of bound error fixer
-  current_id = current_id % (offset + image_count);
+  if (current_id > image_count){
+    current_id = 1;
+    return current_id;
+  } else if (current_id === image_count) {
+    return current_id;
+  } else {
+    current_id = current_id % (image_count);
+  }
 
-  if (current_id <= offset) current_id = offset;
+  if (current_id === 0) current_id++;
   
   // return current_id;
   return current_id;
