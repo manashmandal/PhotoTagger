@@ -46,11 +46,13 @@ function updateAlertPanel(_html, _class){
 function updateInfo(data){
 
   $("#infoalert").empty();
+
+  console.log(data);
   
   if (data.is_tagged){
     $("#infoalert").attr('class', 'alert alert-success');
-    let gender = data.is_male === 1 ? "Male" : "Female";
-    gender = data.is_valid === 1 ? gender : "Invalid Image"; 
+    let gender = data.is_male === '1' ? "Male" : "Female";
+    gender = data.is_valid === '1' ? gender : "Invalid Image"; 
     $("#infoalert").append(
       '<h3><span class="label label label-success">Tagged</span> <span class="label label label-default">Image ID: ' + data.id + '</span> <span class="label label-primary">' + gender + '</span></h3>'
     );
@@ -87,18 +89,19 @@ function loadUntagged(){
 
 // on save event
 $("#saveBtn").on('click', function(){
-  is_male = set_gender === true ? 1 : 0;
-  is_female = is_male === 1 ? 0 : 1;
-  is_valid = $("#fancy-checkbox-danger").prop('checked') === true ? 0 : 1; 
+  is_male = set_gender === true ? '1' : '0';
+  is_female = is_male === '1' ? '0' : '1';
+  is_valid = $("#fancy-checkbox-danger").prop('checked') === true ? '0' : '1'; 
   
   // Add GET request to save data
   $.getJSON('/image/' + current_id, {
-    tagged: true, 
+    tagged: 1, 
     male: is_male,
     female: is_female,
     valid: is_valid
   }).done(function(data){
     console.log("SAVED");
+    console.log(data);
     if (data.status === "saved"){
         updateAlertPanel("<h3>Tagged Successfully</h3>", 'success');
         setTimeout(loadUntagged(), 250);
