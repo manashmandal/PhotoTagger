@@ -37,6 +37,7 @@ function showProgressAlert(){
 
 // Updates info on alert
 function updateInfo(data){
+
   $("#infoalert").empty();
   
   if (data.is_tagged){
